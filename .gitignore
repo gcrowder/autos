@@ -1,0 +1,6 @@
+.DS_Store
+.envrc
+.direnv
+notes.md
+__pycache__
+.vscode
