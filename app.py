@@ -1,6 +1,8 @@
 from apistar import Include, Route
 from apistar.frameworks.wsgi import WSGIApp as App
 from apistar.handlers import docs_urls, static_urls
+from apistar.backends import sqlalchemy_backend
+from db import settings
 
 
 def welcome(name=None):
@@ -24,7 +26,12 @@ routes = [
     Include('/static', static_urls)
 ]
 
-app = App(routes=routes)
+app = App(
+    routes=routes,
+    settings=settings,
+    commands=sqlalchemy_backend.commands,  # Install custom commands.
+    components=sqlalchemy_backend.components  # Install custom components.
+)
 
 
 if __name__ == '__main__':
