@@ -42,7 +42,7 @@ class FuelStation(Base):
     id = Column(Integer, primary_key=True)
     fuel_stops = relationship("FuelStop", back_populates="fuel_station")
     name = Column(String)
-    latitude = Column(String),
+    latitude = Column(String)
     longitute = Column(String)
 
 
