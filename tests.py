@@ -1,7 +1,6 @@
 from apistar.test import TestClient
 from app import app, welcome, create_auto
 from apistar.backends.sqlalchemy_backend import Session
-import json
 
 
 def test_welcome():
