@@ -5,3 +5,4 @@ notes.md
 __pycache__
 .vscode
 autos.db
+.cache/

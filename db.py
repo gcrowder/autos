@@ -14,7 +14,9 @@ class Auto(Base):
     make = Column(String)
     model = Column(String)
     year = Column(String(4))
-    fuel_stops = relationship("FuelStop", back_populates="auto")
+    fuel_stops = relationship("FuelStop",
+                              back_populates="auto",
+                              cascade="all, delete, delete-orphan")
 
     def __repr__(self):
         return f'{self.year} {self.make} {self.model}'
@@ -34,7 +36,7 @@ class FuelStop(Base):
     odometer = Column(Integer)
     time_of_stop = Column(TIMESTAMP)
     octane = Column(Enum("85", "87", "89", "91", "93"))
-  
+
 
 class FuelStation(Base):
     """ FuelStation describes a gas station """
@@ -53,12 +55,3 @@ settings = {
         "METADATA": Base.metadata
     }
 }
-
-"""
-app = App(
-    routes=routes,
-    settings=settings,
-    commands=sqlalchemy_backend.commands,  # Install custom commands.
-    components=sqlalchemy_backend.components  # Install custom components.
-)
-"""
