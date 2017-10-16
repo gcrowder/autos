@@ -1,6 +1,9 @@
 from apistar import Include, Route
 from apistar.frameworks.wsgi import WSGIApp as App
 from apistar.handlers import docs_urls, static_urls
+from apistar.backends import sqlalchemy_backend
+from db import settings
+from routes import auto_urls
 
 
 def welcome(name=None):
@@ -10,21 +13,19 @@ def welcome(name=None):
     return {'message': 'Welcome to API Star, %s!' % name}
 
 
-def square(num: int = 0):
-    """ Square any number """
-    return {
-        'message': num**2
-    }
-
-
 routes = [
     Route('/', 'GET', welcome),
-    Route('/square/{num}', 'GET', square),
+    Include('/autos', auto_urls),
     Include('/docs', docs_urls),
     Include('/static', static_urls)
 ]
 
-app = App(routes=routes)
+app = App(
+    routes=routes,
+    settings=settings,
+    commands=sqlalchemy_backend.commands,  # Install custom commands.
+    components=sqlalchemy_backend.components  # Install custom components.
+)
 
 
 if __name__ == '__main__':
