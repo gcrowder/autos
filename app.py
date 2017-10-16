@@ -13,16 +13,8 @@ def welcome(name=None):
     return {'message': 'Welcome to API Star, %s!' % name}
 
 
-def square(num: int = 0):
-    """ Square any number """
-    return {
-        'message': num**2
-    }
-
-
 routes = [
     Route('/', 'GET', welcome),
-    Route('/square/{num}', 'GET', square),
     Include('/autos', auto_urls),
     Include('/docs', docs_urls),
     Include('/static', static_urls)

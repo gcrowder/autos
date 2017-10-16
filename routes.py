@@ -12,7 +12,6 @@ def make_auto_dict(auto: Auto) -> dict:
         "year": auto.year
     }
 
-
 def create_auto(session: Session, data: http.RequestData) -> dict:
     """ Creates auto in db. Called from POST /autos/ """
     auto = Auto(**data)
