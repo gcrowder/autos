@@ -4,6 +4,7 @@ from db import Auto
 
 
 def make_auto_dict(auto: Auto) -> dict:
+    """ Returns a dictionary of the relevant attributes from an Auto object """
     return {
         "id": auto.id,
         "name": auto.name,
